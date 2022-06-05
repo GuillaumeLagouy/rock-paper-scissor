@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #354259;
+    --board: #EAE5D2;
+    --card: #C2DED1;
+
+    --card-width: 100px;
+    --card-height: 150px;
+    --card-b-rad: 8px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: var(--background);
+}
+
+.container {
+    width: 80%;
+    height: 70vh;
+    border-radius: 1rem;
+    background: var(--board);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    position: absolute;
+}
+
+.empty {
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: var(--card-b-rad);
+    border: dashed 2px var(--background);
+    position: absolute;
+    opacity: 0.5;
+}
+
+.opponent-area {
+    position: relative;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.current-area {
+    position: relative;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    background: var(--card);
+    border-radius: var(--card-b-rad);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.cards {
+    position: absolute;
+    bottom: -50px;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+}

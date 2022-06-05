@@ -1,47 +1,22 @@
-import * as PHASER from 'phaser';
+import { gsap } from "gsap";
+import {io} from "socket.io-client";
 
-const config = {
-	type: PHASER.AUTO,
-	width: 800,
-	height: 600,
-	physics: {
-		default: "arcade",
-		arcade: {
-			gravity: {y: 200},
-		},
-	},
-	scene: {
-		preload: preload,
-		create: create,
-	},
-};
+const Client = {};
+Client.socket = io.connect();
+console.log(Client)
 
-const game = new Phaser.Game(config);
+const cards = [...document.querySelectorAll(".card")];
 
-function preload() {
-	this.load.setBaseURL("https://labs.phaser.io");
+const crtCard = document.querySelector('.current-area .empty');
 
-	this.load.image("sky", "assets/skies/space3.png");
-	this.load.image("logo", "assets/sprites/phaser3-logo.png");
-	this.load.image("red", "assets/particles/red.png");
-}
+cards.forEach((card) => {
+	card.addEventListener("click", (e) => {
+		console.log(e.target.dataset.card);
+		let x = e.target.getBoundingClientRect().x - crtCard.getBoundingClientRect().x;
+		let y = e.target.getBoundingClientRect().y - crtCard.getBoundingClientRect().y;
 
-function create() {
-	this.add.image(400, 300, "sky");
-
-	var particles = this.add.particles("red");
-
-	var emitter = particles.createEmitter({
-		speed: 100,
-		scale: {start: 1, end: 0},
-		blendMode: "ADD",
+		gsap.to(e.target, {
+			x: -x, y: -y,
+		})
 	});
-
-	var logo = this.physics.add.image(400, 100, "logo");
-
-	logo.setVelocity(100, 200);
-	logo.setBounce(1, 1);
-	logo.setCollideWorldBounds(true);
-
-	emitter.startFollow(logo);
-}
+});
