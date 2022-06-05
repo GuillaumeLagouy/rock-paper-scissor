@@ -3,6 +3,7 @@ import {io} from "socket.io-client";
 
 const Client = {};
 Client.socket = io.connect();
+// localhost:8081
 console.log(Client)
 
 const cards = [...document.querySelectorAll(".card")];

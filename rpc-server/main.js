@@ -24,13 +24,6 @@ const ATTACKS = {
     paper : 'paper',
 }
 
-app.get('/',function(req,res){
-    const p = path.resolve(__dirname+'/../src/index.html');
-    res.sendFile(p); 
-});
-
-app.use('/public',express.static(path.resolve(__dirname + '/../src')));
-
 server.listen(8081,function(){ // Listens to port 8081
     console.log('Listening on '+server.address().port);
 
